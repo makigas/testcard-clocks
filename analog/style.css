@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "vcr";
+  src: url("../shared/vcr.ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  box-sizing: border-box !important;
+}
+
+body {
+  background: black;
+}
+
+#analog_clock {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}

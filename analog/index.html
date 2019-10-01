@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<svg id="analog_clock" viewBox="-1.2 -1.2 2.4 2.4">
+  <text x="0" y="-1" font-family="vcr" font-size="0.1" fill="yellow" text-anchor="middle" dominant-baseline="mathematical">12</text>
+  <text x="1" y="0" font-family="vcr" font-size="0.1" fill="yellow" text-anchor="middle" dominant-baseline="mathematical">3</text>
+  <text x="0" y="1" font-family="vcr" font-size="0.1" fill="yellow" text-anchor="middle" dominant-baseline="mathematical">6</text>
+  <text x="-1" y="0" font-family="vcr" font-size="0.1" fill="yellow" text-anchor="middle" dominant-baseline="mathematical">9</text>
+
+  <g transform="translate(0.8660 0.5)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(0.5 0.8660)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(-0.8660 0.5)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(-0.5 0.8660)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(-0.8660 -0.5)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(-0.5 -0.8660)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(0.8660 -0.5)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+  <g transform="translate(0.5 -0.8660)">
+    <rect transform="rotate(45)" x="-0.025" y="-0.025" width="0.05" height="0.05" fill="yellow" />
+  </g>
+
+  <line x1="0" y1="0.1" x2="0" y2="-0.8" stroke="yellow" id="seconds" stroke-width="0.03" />
+  <line x1="0" y1="0.1" x2="0" y2="-0.7" stroke="#0066cc" id="minutes" stroke-width="0.03" />
+  <line x1="0" y1="0.15" x2="0" y2="-0.5" stroke="#0066cc" id="hours" stroke-width="0.04" />
+</svg>
+
+<script src="clock.js"></script>
+
+</body>
+</html>
