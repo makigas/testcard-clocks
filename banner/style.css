@@ -1,0 +1,88 @@
+body, .container, p {
+  margin: 0;
+  padding: 0;
+  font-family: Overpass;
+  font-weight: 600;
+  font-size: 16pt;
+}
+
+.container {
+  width: 100%;
+  background: #003399;
+  color: white;
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+}
+
+.live {
+  background: #303030;
+  align-self: center;
+  width: 160px;
+  text-align: center;
+  z-index: 1;
+}
+
+@keyframes prescroll {
+  0% { transform: translateX(100%); }
+  60% { transform: translateX(100%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes scroll {
+  0% { transform: translateY(0); }
+  48% { transform: translateY(0); }
+  52% { transform: translateY(-100%); }
+  100% { transform: translateY(-100%); }
+}
+
+.hashtag {
+  align-self: center;
+  width: 180px;
+  text-align: center;
+  font-size: 13pt;
+  z-index: 1;
+}
+
+.banner {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  flex: 1;
+}
+
+.prescroll {
+  animation: prescroll 8s linear;
+}
+
+.scroll {
+  animation: scroll 10s infinite;
+}
+
+.clock {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  background: #003399;
+  z-index: 1;
+}
+
+.time {
+  font-family: 'VCR OSD Mono';
+  font-weight: normal;
+  font-size: 24px;
+  flex: 1;
+  line-height: 100%;
+}
+
+.tf {
+  font-weight: normal;
+  transform: scaleX(110%) translateY(1px);
+  font-size: 10pt;
+  flex: 1;
+  line-height: 100%;
+}
