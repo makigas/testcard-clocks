@@ -1,0 +1,141 @@
+const sentences = [
+    ['delay', 200],
+    ['print', "  "],
+    ['delay', 4000],
+    ['print', "<https://twitch.tv/danirod_>"],
+    ['linebreak'],
+    ['delay', 4000],
+    ['print', 'Iniciando sistema operativo...'],
+    ['delay', 7000],
+    ['linebreak'],
+    ['linebreak'],
+    ['print', 'Montando el disco duro de los memes...'],
+    ['delay', 6000],
+    ['linebreak'],
+    ['linebreak'],
+    ['print', 'Sacando brillo a los teclados...'],
+    ['delay', 7000],
+    ['linebreak'],
+    ['linebreak'],
+    ['print', 'Desfragmentando un kiwi...'],
+    ['delay', 6000],
+    ['linebreak'],
+    ['linebreak'],
+    ['print', 'Ejecutando entorno gráfico...'],
+    ['delay', 4000],
+    ['linebreak'],
+    ['print', 'Música cortesía de: Kevin MacLeod'],
+    ['linebreak'],
+    ['print', 'Jet Fuelen Vixen (CC BY)'],
+];
+
+let speed = 30;
+
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, ms);
+    });
+}
+
+function printChars(element, string) {
+    const action = new Promise((resolve) => {
+        delay(speed).then(() => {
+            if (string[0] == ' ') {
+                element.innerHTML += string[0];
+            } else {
+                element.innerText += string[0];
+            }
+            resolve();
+        });
+    });
+    if (string.length > 1) {
+        return action.then(() => printChars(element, string.slice(1)));
+    }
+}
+
+function printString() {
+    function printNextSentence() {
+        if (sentences.length == 0) {
+            return;
+        }
+        const next = sentences.shift(1);
+        console.log(next)
+        switch (next[0]) {
+            case 'delay': {
+                const amount = next[1];
+                return delay(amount).then(() => { printNextSentence() });
+            }
+            case 'linebreak': {
+                const paragraph = document.createElement("p");
+                document.body.appendChild(paragraph);
+                window.scrollTo(0,document.body.scrollHeight);
+                return printNextSentence();
+            }
+            case 'setspeed': {
+                speed = next[1];
+                return printNextSentence();
+            }
+            case 'print': {
+                const paragraph = document.createElement("p");
+                document.body.appendChild(paragraph);
+                const text = next[1];
+                return printChars(paragraph, text).then(() => { printNextSentence() });
+            }
+        }
+    }
+
+    printNextSentence();
+}
+
+function inject(id) {
+    const content = document.getElementById(id).content;
+    document.body.appendChild(document.importNode(content, true));
+}
+
+inject('boot');
+const oldAudio = new Audio("startup.mp3");
+oldAudio.volume = 0.7;
+oldAudio.play();
+
+const BIOS_DURATION = 16000;
+const BOOT_WAIT = 17000;
+const BOOT_DURATION = 65000;
+
+setTimeout(function() {
+    document.querySelector('.boot').remove();
+}, BIOS_DURATION);
+
+setTimeout(function() {
+    const oldAudioFadeout = setInterval(() => {
+        if (oldAudio.volume < 0.01) {
+            oldAudio.pause();
+            clearInterval(oldAudioFadeout);
+        } else {
+            oldAudio.volume -= 0.01;
+        }
+    }, 1000 / 50);
+    setTimeout(() => {
+        const newAudio = new Audio("Jet Fueled Vixen.mp3");
+        newAudio.volume = 0.3;
+        newAudio.play();
+    }, 1500);
+
+    setTimeout(() => {
+        while (document.body.firstChild) {
+            document.body.removeChild(document.body.firstChild);
+        }
+        setTimeout(() => {
+            inject('desktop');
+        }, 1000);
+        setTimeout(() => {
+            document.querySelector('#menubar.hidden').classList.remove('hidden');
+            setTimeout(() => {
+                document.querySelector('#popup.hidden').classList.remove('hidden');
+            }, 2000);
+        }, 2000);
+    }, BOOT_DURATION);
+
+    printString();
+}, BOOT_WAIT);
