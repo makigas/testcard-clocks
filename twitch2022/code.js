@@ -1,31 +1,24 @@
 const sentences = [
-    ['delay', 200],
-    ['print', "  "],
     ['delay', 4000],
     ['print', "<https://twitch.tv/danirod_>"],
-    ['linebreak'],
     ['delay', 4000],
+    ['linebreak'],
     ['print', 'Iniciando sistema operativo...'],
     ['delay', 7000],
-    ['linebreak'],
     ['linebreak'],
     ['print', 'Montando el disco duro de los memes...'],
     ['delay', 6000],
     ['linebreak'],
-    ['linebreak'],
     ['print', 'Sacando brillo a los teclados...'],
     ['delay', 7000],
     ['linebreak'],
-    ['linebreak'],
     ['print', 'Desfragmentando un kiwi...'],
     ['delay', 6000],
-    ['linebreak'],
     ['linebreak'],
     ['print', 'Ejecutando entorno gráfico...'],
     ['delay', 4000],
     ['linebreak'],
     ['print', 'Música cortesía de: Kevin MacLeod'],
-    ['linebreak'],
     ['print', 'Jet Fuelen Vixen (CC BY)'],
 ];
 
@@ -69,7 +62,13 @@ function printString() {
             }
             case 'linebreak': {
                 const paragraph = document.createElement("p");
-                document.body.appendChild(paragraph);
+                paragraph.classList.add('invisible');
+                paragraph.innerText = '.';
+                document.body.querySelector('#logwrap').appendChild(paragraph);
+                // Limit the number of lines presented in the screen.
+                if (document.body.querySelector('#logwrap').children.length > 20) {
+                    document.body.querySelector('#logwrap').firstChild.remove();
+                }
                 window.scrollTo(0,document.body.scrollHeight);
                 return printNextSentence();
             }
@@ -78,8 +77,13 @@ function printString() {
                 return printNextSentence();
             }
             case 'print': {
+                document.querySelector('#logwrap').classList.remove('empty');
                 const paragraph = document.createElement("p");
-                document.body.appendChild(paragraph);
+                document.body.querySelector('#logwrap').appendChild(paragraph);
+                // Limit the number of lines presented in the screen.
+                if (document.body.querySelector('#logwrap').children.length > 20) {
+                    document.body.querySelector('#logwrap').firstChild.remove();
+                }
                 const text = next[1];
                 return printChars(paragraph, text).then(() => { printNextSentence() });
             }
@@ -105,6 +109,7 @@ const BOOT_DURATION = 65000;
 
 setTimeout(function() {
     document.querySelector('.boot').remove();
+    inject('log');
 }, BIOS_DURATION);
 
 setTimeout(function() {
