@@ -15,6 +15,12 @@ const sentences = [
     ['print', 'Desfragmentando un kiwi...'],
     ['delay', 6000],
     ['linebreak'],
+    ['print', 'Preparando el curso de Scala...'],
+    ['delay', 1000],
+    ['print', 'Es coña, terminaré Scala cuando salga Half Life 3 xD'],
+    ['print', ' -- @messer199'],
+    ['delay', 4000],
+    ['linebreak'],
     ['print', 'Ejecutando entorno gráfico...'],
     ['delay', 4000],
     ['linebreak'],
@@ -105,7 +111,7 @@ oldAudio.play();
 
 const BIOS_DURATION = 16000;
 const BOOT_WAIT = 17000;
-const BOOT_DURATION = 65000;
+const BOOT_DURATION = 70000;
 
 setTimeout(function() {
     document.querySelector('.boot').remove();
