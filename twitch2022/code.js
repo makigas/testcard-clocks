@@ -21,6 +21,10 @@ const sentences = [
     ['print', ' -- @messer199'],
     ['delay', 4000],
     ['linebreak'],
+    ['print', 'Preparando el nuevo año de Java en YouTube...'],
+    ['print', ' -- @ckmu32'],
+    ['delay', 3000],
+    ['linebreak'],
     ['print', 'Ejecutando entorno gráfico...'],
     ['delay', 4000],
     ['linebreak'],
@@ -111,7 +115,7 @@ oldAudio.play();
 
 const BIOS_DURATION = 16000;
 const BOOT_WAIT = 17000;
-const BOOT_DURATION = 70000;
+const BOOT_DURATION = 73000;
 
 setTimeout(function() {
     document.querySelector('.boot').remove();
